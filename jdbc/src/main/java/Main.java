@@ -5,7 +5,10 @@ import java.sql.*;
 @Slf4j
 public class Main {
     public static void main(String[] args) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mariadb://183.96.148.41:3306/tutor", "tutor", "tutorp");
+        Connection connection = DriverManager.getConnection(
+                System.getenv("DB_URL"),
+                System.getenv("DB_USER"),
+                System.getenv("DB_PASS"));
 //        Statement statement = connection.createStatement();
 //        ResultSet resultSet = statement.executeQuery("SELECT * FROM member WHERE age > 10");
 
