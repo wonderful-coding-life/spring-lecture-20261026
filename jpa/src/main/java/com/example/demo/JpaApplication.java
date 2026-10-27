@@ -8,9 +8,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @Component
 @RequiredArgsConstructor
@@ -58,16 +63,18 @@ public class JpaApplication implements ApplicationRunner {
         // 게시글 생성
         var member = memberRepository.findByName("윤서준").getFirst();
         var article = Article.builder()
-                .title("방학 둘째날이다")
-                .description("오늘도 신난다")
-                .created(LocalDateTime.now())
-                .updated(LocalDateTime.now())
+                .title("방학 세째날이다")
+                .description("오늘도 또 신난다")
+//                .created(LocalDateTime.now())
+//                .updated(LocalDateTime.now())
                 .member(member).build();
-
         articleRepository.save(article);
-
         article = articleRepository.findById(2L).orElseThrow();
-
         log.info("{} {}", article.getMember().getName(), article.getTitle());
+
+        // 페이지 단위 조회
+//        Pageable pageable = PageRequest.of(0, 20, Sort.by(DESC, "created"));
+//        var page = articleRepository.findAll(pageable);
+//        page.getContent().stream().forEach(article -> log.info("게시글 {}", article));
     }
 }
