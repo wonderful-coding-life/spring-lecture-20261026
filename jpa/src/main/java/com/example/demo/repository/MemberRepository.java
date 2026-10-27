@@ -12,4 +12,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findByName(String name);
     Optional<Member> findByEmail(String email);
     List<Member> findByAge(Integer age);
+    List<Member> findByAgeGreaterThanEqual(Integer age);
+    List<Member> findByNameContainingOrderByNameAsc(String name);
 }
