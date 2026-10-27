@@ -31,6 +31,19 @@ public class MyBatisApplication implements ApplicationRunner {
 //        member = memberMapper.selectById(32L).orElse(Member.builder().name("홍길동").build());
 //        log.info("32번 회원 {}", member);
 
+        // 나이로 조회
+//        List<Member> members = memberMapper.selectByAgeGreaterThanEqual(18);
+//        members.stream().forEach(member -> log.info("회원 {}", member));
+
+        // 정렬 조회
+//        List<Member> members = memberMapper.selectAllOrderByAge();
+        String order = "age; DROP TABLE member;--";
+        // SELECT * FROM member ORDER BY age; DROP TABLE member;-- asc
+        // order -> age, name, email
+        // dir -> asc, desc
+        List<Member> members = memberMapper.selectAllOrderBy(order, "asc");
+        members.stream().forEach(member -> log.info("회원 {}", member));
+
         // 회원 생성
 //        Member member = Member.builder().name("홍길동").email("GildongHong@campus.co.kr").age(18).build();
 //        int result = memberMapper.insert(member);
@@ -42,8 +55,8 @@ public class MyBatisApplication implements ApplicationRunner {
 //        log.info("1번 회원 이메일 변경 후...{}", member);
 
         // 회원 삭제
-        memberMapper.deleteById(3L);
-        Member member = memberMapper.selectById(3L).orElse(null);
-        log.info("3번 회원 탈퇴 후, 회원={}", member);
+//        memberMapper.deleteById(3L);
+//        Member member = memberMapper.selectById(3L).orElse(null);
+//        log.info("3번 회원 탈퇴 후, 회원={}", member);
     }
 }
