@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dto.MemberRequest;
 import com.example.demo.dto.MemberResponse;
 import com.example.demo.entity.Member;
+import com.example.demo.exception.MemberNotFoundException;
 import com.example.demo.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,11 @@ public class MemberService {
     @Transactional
     public List<MemberResponse> subscribeBatch(List<MemberRequest> memberRequests) {
         return memberRequests.stream().map(this::subscribe).toList();
+    }
+
+    public MemberResponse getMember(Long memberId) {
+        var member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
+        return mapToMemberResponse(member);
     }
 
     private MemberResponse mapToMemberResponse(Member member) {
