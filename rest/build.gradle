@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0'
 	// XML parser
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
 
