@@ -20,4 +20,5 @@ public class Member {
     @Column(name="email")
     private String email;
     private Integer age;
+    private String profilePhotoUrl;
 }
