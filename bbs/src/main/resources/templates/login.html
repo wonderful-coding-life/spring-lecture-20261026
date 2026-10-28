@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>로그인 | Spring 게시판</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+<main class="mx-auto flex min-h-screen max-w-md items-center px-5 py-12">
+    <section class="w-full rounded-2xl bg-white p-8 shadow-lg shadow-slate-200/70 sm:p-10">
+        <a th:href="@{/articles}" class="text-sm font-semibold tracking-wide text-indigo-600">SPRING BOARD</a>
+        <h1 class="mt-5 text-3xl font-bold tracking-tight">로그인</h1>
+        <p class="mt-2 text-sm text-slate-500">게시판을 이용하려면 로그인해 주세요.</p>
+
+        <div th:if="${param.error}" class="mt-6 rounded-lg bg-rose-50 px-4 py-3 text-sm text-rose-700">
+            아이디 또는 비밀번호를 확인해 주세요.
+        </div>
+        <div th:if="${param.logout}" class="mt-6 rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+            로그아웃했습니다.
+        </div>
+
+        <form th:action="@{/login}" method="post" class="mt-7 space-y-5">
+            <div>
+                <label for="username" class="mb-2 block text-sm font-medium">로그인 아이디</label>
+                <input id="username" name="username" type="text" autocomplete="username" required
+                       class="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100">
+            </div>
+            <div>
+                <label for="password" class="mb-2 block text-sm font-medium">비밀번호</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required
+                       class="w-full rounded-lg border border-slate-300 px-3 py-2.5 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100">
+            </div>
+            <button type="submit" class="w-full rounded-lg bg-indigo-600 px-4 py-3 font-semibold text-white transition hover:bg-indigo-700">로그인</button>
+        </form>
+        <p class="mt-6 text-center text-sm text-slate-500">
+            아직 회원이 아니신가요? <a th:href="@{/members/new}" class="font-semibold text-indigo-600 hover:text-indigo-700">회원가입</a>
+        </p>
+        <a th:href="@{/articles}" class="mt-5 block text-center text-sm text-slate-500 hover:text-slate-800">게시글 둘러보기</a>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿{
+  "steps": [
+    { "step": 1, "name": "Entity 및 schema.sql", "status": "done" },
+    { "step": 2, "name": "Repository", "status": "done" },
+    { "step": 3, "name": "Form 및 Validation", "status": "done" },
+    { "step": 4, "name": "Service", "status": "done" },
+    { "step": 5, "name": "Spring Security", "status": "done" },
+    { "step": 6, "name": "Controller", "status": "done" },
+    { "step": 7, "name": "Thymeleaf 화면", "status": "done" },
+    { "step": 8, "name": "권한 및 예외 처리, 통합 테스트", "status": "in_progress" }
+  ]
+}
+
+
+
+
+
+

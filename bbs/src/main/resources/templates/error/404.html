@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>페이지를 찾을 수 없습니다 | Spring 게시판</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="grid min-h-screen place-items-center bg-slate-100 px-5 text-slate-800">
+<main class="w-full max-w-lg rounded-2xl bg-white p-9 text-center shadow-lg shadow-slate-200/70">
+    <p class="text-sm font-bold uppercase tracking-widest text-indigo-600">404</p>
+    <h1 class="mt-3 text-2xl font-bold">요청한 내용을 찾을 수 없습니다.</h1>
+    <p th:text="${message}" class="mt-3 text-slate-500"></p>
+    <a th:href="@{/articles}" class="mt-7 inline-flex rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700">게시글 목록으로</a>
+</main>
+</body>
+</html>
