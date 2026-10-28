@@ -26,6 +26,10 @@ public class MemberService {
 
         // 웰컴 이메일 전송
         // 가입 포인트 누적
+        // 블랙 컨슈머인지 확인
+        if (member.getEmail().equals("SeojunYoon@campus.co.kr")) {
+            throw new RuntimeException();
+        }
 
         return mapToMemberResponse(member);
     }

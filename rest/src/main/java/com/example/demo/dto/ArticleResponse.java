@@ -1,0 +1,22 @@
+package com.example.demo.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ArticleResponse {
+    private Long id;
+    private String title;
+    private String description;
+    private String name;
+    private String email;
+    private LocalDateTime created;
+    private LocalDateTime updated;
+}
