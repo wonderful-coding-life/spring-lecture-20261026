@@ -17,7 +17,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(name="email")
+    @Column(name="email", unique = true)
     private String email;
     private Integer age;
     private String profilePhotoUrl;

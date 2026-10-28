@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.MemberRequest;
+import com.example.demo.dto.MemberResponse;
 import com.example.demo.entity.Member;
 import com.example.demo.exception.MemberNotFoundException;
 import com.example.demo.repository.MemberRepository;
+import com.example.demo.service.MemberService;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +23,17 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
     @PostMapping("/members")
     @ResponseStatus(HttpStatus.CREATED)
-    public Member postMembers(@RequestBody Member member) {
-        return memberRepository.save(member);
+    public MemberResponse postMembers(@RequestBody MemberRequest memberRequest) {
+        return memberService.subscribe(memberRequest);
+    }
+
+    @PostMapping("/api/v2/members")
+    public List<MemberResponse> postMembersBatch(@RequestBody List<MemberRequest> memberRequests) {
+        return memberService.subscribeBatch(memberRequests);
     }
 
     @GetMapping("/members")
@@ -36,6 +46,27 @@ public class MemberController {
         return memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
     }
 
+    @PutMapping("/members/{id}")
+    public Member putMembers(@PathVariable("id") Long id, @RequestBody Member member) {
+        memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
+        member.setId(id);
+        return memberRepository.save(member);
+    }
+
+    @PatchMapping("/members/{id}")
+    public Member patchMembers(@PathVariable("id") Long id, @RequestBody Member patch) {
+        var member = memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
+        if (patch.getName() != null) member.setName(patch.getName());
+        if (patch.getEmail() != null) member.setEmail(patch.getEmail());
+        if (patch.getAge() != null) member.setAge(patch.getAge());
+        return memberRepository.save(member);
+    }
+
+    @DeleteMapping("/members/{id}")
+    public void deleteMembers(@PathVariable("id") Long id) {
+        var member = memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
+        memberRepository.delete(member);
+    }
 
 
 
