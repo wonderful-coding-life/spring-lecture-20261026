@@ -1,0 +1,16 @@
+INSERT INTO articles (title, content, created_at, author_id) VALUES
+('아침 산책', '출근 전에 동네 공원을 한 바퀴 걸었습니다.', CURRENT_TIMESTAMP - INTERVAL 15 MINUTE, 1),
+('새로 연 빵집', '집 근처 빵집에서 따뜻한 소금빵을 샀습니다.', CURRENT_TIMESTAMP - INTERVAL 30 MINUTE, 1),
+('화분에 물 주기', '베란다 바질이 잘 자라도록 물을 넉넉히 줬습니다.', CURRENT_TIMESTAMP - INTERVAL 45 MINUTE, 1),
+('점심 도시락', '오늘은 남은 반찬으로 간단히 도시락을 챙겼습니다.', CURRENT_TIMESTAMP - INTERVAL 1 HOUR, 1),
+('버스에서 본 풍경', '창밖 은행나무가 노랗게 물들기 시작했습니다.', CURRENT_TIMESTAMP - INTERVAL 2 HOUR, 1),
+('따뜻한 차 한 잔', '오후에 보리차를 마시며 잠깐 쉬었습니다.', CURRENT_TIMESTAMP - INTERVAL 3 HOUR, 1),
+('책상 정리', '쌓여 있던 영수증과 메모지를 정리했습니다.', CURRENT_TIMESTAMP - INTERVAL 4 HOUR, 1),
+('퇴근길 장보기', '저녁에 먹을 두부와 버섯을 사 왔습니다.', CURRENT_TIMESTAMP - INTERVAL 5 HOUR, 1),
+('저녁 메뉴', '오늘 저녁은 집에서 간단하게 된장국을 끓였습니다.', CURRENT_TIMESTAMP - INTERVAL 6 HOUR, 1),
+('빨래 널기', '햇볕이 좋아서 오전에 빨래를 널어 두었습니다.', CURRENT_TIMESTAMP - INTERVAL 1 DAY, 1),
+('우산 챙긴 날', '비 소식이 있어 작은 우산을 가방에 넣었습니다.', CURRENT_TIMESTAMP - INTERVAL 2 DAY, 1),
+('동네 도서관', '빌린 책을 반납하고 새 에세이를 한 권 골랐습니다.', CURRENT_TIMESTAMP - INTERVAL 3 DAY, 1),
+('주말 산책 코스', '강변 길을 천천히 걸으며 바람을 쐬었습니다.', CURRENT_TIMESTAMP - INTERVAL 4 DAY, 1),
+('냉장고 정리', '유통기한이 가까운 재료부터 꺼내 저녁에 사용했습니다.', CURRENT_TIMESTAMP - INTERVAL 5 DAY, 1),
+('일찍 잠든 밤', '휴대전화를 일찍 내려놓고 푹 잤더니 개운합니다.', CURRENT_TIMESTAMP - INTERVAL 6 DAY, 1);

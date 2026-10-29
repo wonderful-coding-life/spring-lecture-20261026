@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${article.title} + ' | Spring 게시판'">게시글 상세</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+<header class="border-b border-slate-200 bg-white">
+    <nav class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-4">
+        <a th:href="@{/articles}" class="text-lg font-bold text-indigo-700">Spring 게시판</a>
+        <div class="flex items-center gap-4 text-sm">
+            <th:block sec:authorize="isAnonymous()"><a th:href="@{/login}" class="text-slate-600 hover:text-indigo-700">로그인</a><a th:href="@{/members/new}" class="text-slate-600 hover:text-indigo-700">회원가입</a></th:block>
+            <th:block sec:authorize="isAuthenticated()"><span class="text-slate-600"><span sec:authentication="name"></span>님</span><a th:href="@{/articles/new}" class="font-medium text-indigo-700">글쓰기</a><form th:action="@{/logout}" method="post"><button class="text-slate-600 hover:text-indigo-700">로그아웃</button></form></th:block>
+        </div>
+    </nav>
+</header>
+<main class="mx-auto max-w-4xl px-4 py-10">
+    <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+        <header class="border-b border-slate-100 px-6 py-6 sm:px-8">
+            <p class="text-sm font-semibold text-indigo-600">게시글 상세</p>
+            <h1 th:text="${article.title}" class="mt-2 break-words text-2xl font-bold sm:text-3xl"></h1>
+            <div class="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-slate-500">
+                <span>작성자 <strong th:text="${article.author.name}" class="font-medium text-slate-700"></strong></span>
+                <time th:datetime="${article.createdAt}" th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}"></time>
+            </div>
+        </header>
+        <div th:text="${article.content}" class="min-h-64 whitespace-pre-wrap break-words px-6 py-8 leading-7 sm:px-8"></div>
+    </article>
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <a th:href="@{/articles}" class="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">목록으로</a>
+        <div sec:authorize="isAuthenticated()" th:if="${#authentication.name == article.author.username}" class="flex gap-2">
+            <a th:href="@{/articles/{id}/edit(id=${article.id})}" class="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">수정</a>
+            <form th:action="@{/articles/{id}/delete(id=${article.id})}" method="post" onsubmit="return confirm('이 게시글을 삭제하시겠습니까?');">
+                <button type="submit" class="rounded-lg bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-rose-700">삭제</button>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>
