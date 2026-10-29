@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MVC demo</title>
+</head>
+<body>
+<table>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.id}">100</td>
+        <td th:text="${member.name}">홍길동</td>
+        <td th:text="${member.email}">GildongHong@hanbit.co.kr</td>
+        <td><a th:href="@{/member/edit(id=${member.id})}">수정</a></td>
+        <td><a th:href="@{/member/delete(id=${member.id})}">삭제</a></td>
+    </tr>
+</table>
+<a th:href="@{/member/add}">추가</a>
+</body>
+</html>
