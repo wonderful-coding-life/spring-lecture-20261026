@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>모델 테스트를 위한 화면입니다.</title>
+</head>
+<body>
+
+<div th:replace="~{common::header}"></div>
+
+<h1 th:text="${title}">화면 제목입니다.</h1>
+<ul>
+    <li th:text="${member.name}">홍길동</li>
+    <li th:text="${member.email}">GildongHong@campus.co.kr</li>
+    <li th:text="${member.age}">18</li>
+</ul>
+<ul th:object="${member}">
+    <li th:text="*{name}">홍길동</li>
+    <li th:text="*{email}">GildongHong@campus.co.kr</li>
+    <li th:text="*{age}">18</li>
+</ul>
+
+<div th:replace="~{common::footer}"></div>
+
+</body>
+</html>
